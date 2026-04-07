@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router";
 
+
+
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -8,7 +10,7 @@ function Header() {
     <header className="bg-blue-600 relative flex justify-between px-6 md:px-20 py-4">
       <div className="logo flex items-center gap-2">
         <img
-          src="../src/assets/money_wallet.png"
+          src="../public/money_wallet.png"
           alt="icon-logo"
           className="w-8"
         />

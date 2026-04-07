@@ -1,10 +1,10 @@
 const historyData = [
-  { id: 1, name: "Robert Fox", type: "Transfer", amount: "+Rp50.000", isIncome: true, image: "../src/assets/1.svg" },
-  { id: 2, name: "Floyd Miles", type: "Send", amount: "-Rp50.000", isIncome: false, image: "../src/assets/1-1.svg" },
-  { id: 3, name: "Adisurya", type: "Send", amount: "-Rp50.000", isIncome: false, image: "../src/assets/1-2.svg" },
-  { id: 4, name: "Ujang", type: "Send", amount: "-Rp50.000", isIncome: false, image: "../src/assets/1-3.svg" },
-  { id: 5, name: "Raulemos", type: "Transfer", amount: "+Rp50.000", isIncome: true, image: "../src/assets/1-4.svg" },
-  { id: 6, name: "Reiva", type: "Send", amount: "-Rp50.000", isIncome: false, image: "../src/assets/1-5.svg" }
+  { id: 1, name: "Robert Fox", type: "Transfer", amount: "+Rp50.000", isIncome: true, image: "../public/1.svg" },
+  { id: 2, name: "Floyd Miles", type: "Send", amount: "-Rp50.000", isIncome: false, image: "../public/1-1.svg" },
+  { id: 3, name: "Adisurya", type: "Send", amount: "-Rp50.000", isIncome: false, image: "../public/1-2.svg" },
+  { id: 4, name: "Ujang", type: "Send", amount: "-Rp50.000", isIncome: false, image: "../public/1-3.svg" },
+  { id: 5, name: "Raulemos", type: "Transfer", amount: "+Rp50.000", isIncome: true, image: "../public/1-4.svg" },
+  { id: 6, name: "Reiva", type: "Send", amount: "-Rp50.000", isIncome: false, image: "../public/1-5.svg" }
 ];
 
 

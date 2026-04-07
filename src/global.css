@@ -5,4 +5,12 @@
   --font-montserrat: "Montserrat", sans-serif;
   --font-nunito-sans: "Nunito Sans", sans-serif;
   --font-jakarta-sans: "Plus Jakarta Sans", sans-serif;
+
+  --color-primary:#2948FF;
+}
+
+@layer base{
+  body{
+    font-family: var(--font-montserrat);
+  }
 }

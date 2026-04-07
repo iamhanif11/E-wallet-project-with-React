@@ -7,7 +7,7 @@ function BalanceCard() {
     
         <div className="head flex items-center gap-3">
 
-          <img src="../src/assets/balance.svg" alt="balance" className="w-6 h-6 object-contain" />
+          <img src="../public/balance.svg" alt="balance" className="w-6 h-6 object-contain" />
           <p className="text-gray-500 font-montserrat font-medium">Balance</p>
         </div>
         
@@ -20,7 +20,7 @@ function BalanceCard() {
             <h4 className="text-gray-400 text-xs font-montserrat">Income</h4>
             <div className="more flex items-center gap-2">
               <p className="in font-montserrat text-green-500 text-sm">Rp.200.000 +2%</p>
-              <img src="../src/assets/ArrowRise-s.png" alt="arrow up" className="w-3 h-3 object-contain" />
+              <img src="../public/ArrowRise-s.png" alt="arrow up" className="w-3 h-3 object-contain" />
             </div>
           </div>
 
@@ -29,14 +29,14 @@ function BalanceCard() {
             <h4 className="text-gray-400 text-xs ">Expense</h4>
             <div className="more flex items-center gap-2">
               <p className="out-1 text-red-500  text-sm">Rp.100.000 +5%</p>
-              <img src="../src/assets/ArrowRise-red.svg" alt="arrow down" className="w-3 h-3 object-contain" />
+              <img src="../public/ArrowRise-red.svg" alt="arrow down" className="w-3 h-3 object-contain" />
             </div>
           </div>
 
         </div>
       </div>
       
-    </div> // Perbaikan 2: Menambahkan penutup div untuk pembungkus terluar
+    </div>
   );
 }
 

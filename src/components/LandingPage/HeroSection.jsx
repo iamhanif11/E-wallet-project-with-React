@@ -8,7 +8,7 @@ function HeroSection() {
       </h1>
       <div className="description flex flex-col md:flex-row md:justify-centera md:items-center md:gap-4 ">
       <div>
-        <img src="../src/assets/Group 1580.svg" alt="dashboard"/>
+        <img src="../public/Group 1580.svg" alt="dashboard"/>
       </div>
         <div className="user-download ">
           <p className="ads font-montserrat text-sm md:text-base text-white font-light mb-8">
@@ -16,7 +16,7 @@ function HeroSection() {
           </p>
           <div className="btn-download flex justify-between mb-2 gap-8">
             <ButtonDownload
-                icon="../src/assets/gplay.png"
+                icon="../public/gplay.png"
                 altText="google-play"
                 text="Google Play"
                 imgSize='w-8'
@@ -24,12 +24,12 @@ function HeroSection() {
                 />
             
             {/* <button className="border flex justify-center items-center gap-4 flex-1 p-2 border-white rounded-sm text-white hover:bg-white hover:text-blue-600">
-              <img src="../src/assets/gplay.png" alt="gplay" className="w-6" />
+              <img src="../public/gplay.png" alt="gplay" className="w-6" />
               <p className="font-montserrat font-light">Playstore</p>
             </button> */}
            
            <ButtonDownload
-            icon="../src/assets/iconapple.svg"
+            icon="../public/iconapple.svg"
             altText="apple-store"
             text="Apple Store"
             invertOnHover={true}
@@ -38,7 +38,7 @@ function HeroSection() {
            />
             {/* <button className="border justify-center flex gap-4 flex-1 p-2 border-white rounded-sm items-center text-white hover:bg-white hover:text-blue-600">
               <img
-                src="../src/assets/iconapple.svg"
+                src="../public/iconapple.svg"
                 id="apple"
                 alt="apple-store"
                 className="group-hover:invert"
@@ -50,7 +50,7 @@ function HeroSection() {
             <h1 className="font-montserrat font-medium text-4xl text-white">
               4.6 M
             </h1>
-            <img src="../src/assets/user.svg" alt="user" />
+            <img src="../public/user.svg" alt="user" />
           </div>
           <p className="ads font-montserrat font-light text-white">
             Around the world, we already have over 4.6 happy user

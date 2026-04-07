@@ -11,14 +11,14 @@ function Testimonial() {
 
       <div className="testimoni w-full md:grid md:grid-cols-3 items-center max-w-6xl mx-auto ">
         <div className="arrow hidden md:flex md:justify-center">
-          <img src="../src/assets/Group 1305.svg" alt="left-arrow" />
+          <img src="../public/Group 1305.svg" alt="left-arrow" />
         </div>
 
         <div className="box-testimoni w-full px-16 py-8 text-white rounded-lg  border-blue-600 bg-blue-600 flex flex-col items-center">
-          <img src="../src/assets/james.svg" className="profil" alt="james" />
+          <img src="../public/james.svg" className="profil" alt="james" />
           <h3 className="font-montserrat font-bold text-lg ">James Bond</h3>
           <img
-            src="../src/assets/Frame 41 white.svg"
+            src="../public/Frame 41 white.svg"
             className="star"
             alt="rating"
           />
@@ -31,7 +31,7 @@ function Testimonial() {
         </div>
 
         <div className="arrow hidden md:flex md:justify-center">
-          <img src="../src/assets/Group 1304.svg" alt="right-arrow" />
+          <img src="../public/Group 1304.svg" alt="right-arrow" />
         </div>
       </div>
     </section>

@@ -12,7 +12,7 @@ function Logo ({textColor, className = ""}){
     return(
         <Link to="/" className={`flex items-center cursor-pointer gap-2 ${className}`}>
         <img
-          src="../src/assets/money_wallet.png"
+          src="../public/money_wallet.png"
           alt="icon-logo"
           className="w-8"
         />

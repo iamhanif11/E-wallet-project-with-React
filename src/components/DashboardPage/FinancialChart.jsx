@@ -69,10 +69,10 @@ function FinancialChart (){
             <h3>Financial Chart</h3>
             <div className="flex gap-4 ">
                 <button className="flex gap-1 p-2 border rounded-xs text-sm bg-gray-100 ">
-                  7 Days <img src="../public/down.svg" alt="down" />
+                  7 Days <img src="/down.svg" alt="down" />
                 </button>
                 <button className="flex gap-1 p-2 border rounded-xs text-sm bg-gray-100">
-                  All <img src="../public/down.svg" alt="down" />
+                  All <img src="/down.svg" alt="down" />
                 </button>
             </div>    
 

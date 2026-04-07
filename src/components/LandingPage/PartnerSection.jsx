@@ -9,12 +9,12 @@ function PartnerSection(){
           </p>
         </div>
         <div className="brand-support md:flex md:w-2/3">
-          <img src="../public/ms.svg" alt="icon-microsoft" />
-          <img src="../public/dropbox.svg" alt="icon-dropbox" />
-          <img src="../public/hm.svg" alt="icon-hm" />
-          <img src="../public/airbnb.svg" alt="icon-airbnb" />
-          <img src="../public/canon.svg" alt="icon-canon" />
-          <img src="../public/dell.svg" alt="icon-dell" />
+          <img src="/ms.svg" alt="icon-microsoft" />
+          <img src="/dropbox.svg" alt="icon-dropbox" />
+          <img src="/hm.svg" alt="icon-hm" />
+          <img src="/airbnb.svg" alt="icon-airbnb" />
+          <img src="/canon.svg" alt="icon-canon" />
+          <img src="/dell.svg" alt="icon-dell" />
         </div>
       </section>
     )

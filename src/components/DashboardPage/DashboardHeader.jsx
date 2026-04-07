@@ -4,7 +4,7 @@ import { useState } from "react";
 function DashboardHeader() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // ✓ Nama konsisten
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -13,7 +13,7 @@ function DashboardHeader() {
     <header className="relative py-4 px-8 md:px-20 flex justify-between items-center border-b border-gray-400 shadow-sm">
       <Logo textColor="text-primary" />
 
-      {/* ✓ onClick di luar className */}
+
       <div
         className="profil flex gap-4 items-center cursor-pointer"
         onClick={toggleDropdown}
@@ -28,7 +28,7 @@ function DashboardHeader() {
       </div>
 
       {isDropdownOpen && (
-        // ✓ top-full agar posisi dropdown tepat di bawah header
+
         <div className="absolute right-8 top-full mt-2 w-48 bg-white border border-gray-100 shadow-xl rounded-md p-2 z-50 ">
           <button className="flex items-center gap-3 w-full p-3 text-primary bg-white rounded-md mb-1 hover:bg-blue-700 hover:text-white transition-colors">
             <div className="w-5 h-5 flex items-center justify-center">

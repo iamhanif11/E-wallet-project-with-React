@@ -4,7 +4,7 @@ function Footer() {
       <div className="footer-desc w-full max-w-7xl grid-cols-1 grid md:grid-cols-4 gap-10 mb-4 items-start">
         <div className="detail-brand flex flex-col gap-2">
           <div className="logo-footer logo flex items-center gap-2">
-            <img src="../public/money_wallet.png" alt="logo"
+            <img src="/money_wallet.png" alt="logo"
             className="w-8"
             />
             <p className="font-nunito-sans text-white font-medium">E-Wallet</p>
@@ -18,27 +18,27 @@ function Footer() {
         <div className="contact font-montserrat text-white text-lg font-medium flex flex-col gap-2">
           <h2>GET IN TOUCH</h2>
           <div className="phone flex items-center gap-2">
-            <img src="../public/u_phone.svg" alt="phone" />
+            <img src="/u_phone.svg" alt="phone" />
             <p className="text-sm">+62 5637 8882 9901</p>
           </div>
           <div className="mail flex items-center gap-2">
-            <img src="../public/mail.svg" alt="mail" />
+            <img src="/mail.svg" alt="mail" />
             <p className="text-sm">contact@zwallet.com</p>
           </div>
         </div>
         <div className="sosmed flex flex-col gap-2">
           <h2 className="font-montserrat text-white text-lg font-medium">SOCIAL MEDIA</h2>
           <div className="sosmed-icon flex gap-2 ">
-            <img src="../public/twt.svg" alt="twitter" />
-            <img src="../public/2.svg" alt="fb" />
-            <img src="../public/3.svg" alt="ig" />
-            <img src="../public/4.svg" alt="github" />
+            <img src="/twt.svg" alt="twitter" />
+            <img src="/2.svg" alt="fb" />
+            <img src="/3.svg" alt="ig" />
+            <img src="/4.svg" alt="github" />
           </div>
         </div>
         <form className="flex flex-col gap-2">
           <label htmlFor="email-footer" className="w-full font-montserrat text-white text-lg font-medium">NEWSLETTER</label>
           <div className="input-box flex gap-2 bg-white px-4 py-3 rounded-lg items-center">
-            <img src="../public/Vector.svg" alt="icon_email" />
+            <img src="/Vector.svg" alt="icon_email" />
             <input type="email" id="email" placeholder="Enter Your Email"
             className="bg-white" />
           </div>

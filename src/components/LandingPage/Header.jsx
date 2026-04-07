@@ -10,7 +10,7 @@ function Header() {
     <header className="bg-blue-600 relative flex justify-between px-6 md:px-20 py-4">
       <div className="logo flex items-center gap-2">
         <img
-          src="../public/money_wallet.png"
+          src="/money_wallet.png"
           alt="icon-logo"
           className="w-8"
         />
@@ -28,7 +28,7 @@ function Header() {
         </Link >
       </nav>
 
-      {/* isi state menu burger */}
+    
       <button
         className="md:hidden flex flex-col gap-2 cursor-pointer"
         onClick={() => setIsMenuOpen(!isMenuOpen)}

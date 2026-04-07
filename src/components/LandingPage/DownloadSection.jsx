@@ -5,7 +5,7 @@ function DownloadSection() {
     <section className="bg-gray-100 px-6 md:px-20 py-4 md:py-16 grid grid-cols-1 md:grid-cols-2">
       <div className="flex order-2 md:order-1">
         <img
-          src="../public/Group 1580.svg"
+          src="/Group 1580.svg"
           alt="mobile-dashboard"
           className="order-2 md:order-1"
         />
@@ -21,7 +21,7 @@ function DownloadSection() {
         </p>
         <div className="btn-download flex gap-8">
           <ButtonDownload
-            icon="../public/gplay.png"
+            icon="/gplay.png"
             altText="google-play"
             text="Google Play"
             imgSize="w-8"
@@ -29,7 +29,7 @@ function DownloadSection() {
           />
 
           <ButtonDownload
-            icon="../public/apple-24.png"
+            icon="/apple-24.png"
             altText="apple-store"
             text="Apple Store"
             imgSize="w-6"

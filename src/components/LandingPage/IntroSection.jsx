@@ -2,7 +2,7 @@ function IntroSection(){
     return(
         <section className="flex flex-col md:flex-row md:gap-4 px-6 md:px-20 py-8 md:py-16 max-w-7xl overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center order-1 md:order-2">
-         <img src="../public/lpdasboard.png" alt="image-mobiledashboard" className="w-full mb-6 max-w-md md:w-xl md:max-w-lg " />
+         <img src="/lpdasboard.png" alt="image-mobiledashboard" className="w-full mb-6 max-w-md md:w-xl md:max-w-lg " />
         </div>
         <div className="intro-detail flex flex-col gap-4 items-center md:items-start order-2 md:order-1">
           <h3 className="font-montserrat text-blue-600 text-lg font-bold">WELCOME TO E-WALLET</h3>

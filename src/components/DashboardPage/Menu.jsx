@@ -2,7 +2,7 @@ import {NavLink} from "react-router"
 
 function Menu() {
   return (
-    <aside className="menu-bar w-64 h-max-screen flex flex-col pt-8 px-6 gap-2 border-r border-r-gray-400 shadow-sm">
+    <aside className="hidden menu-bar w-64 h-max-screen md:flex flex-col pt-8 px-6 gap-2 border-r border-r-gray-400 ">
       <NavLink to="/Dashboard"
       className="flex items-center gap-4 p-3 text-left cursor-pointer rounded-md hover:bg-blue-600 group hover:text-white">
         <img

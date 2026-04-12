@@ -10,7 +10,7 @@ const historyData = [
 
 function HistoryCard(){
     return(
-        <div className="bg-white p-6 border flex flex-col border-gray-100 shadow-sm font-montserrat w-full h-full">
+        <div className="bg-white p-6 border flex flex-col border-gray-200 rounded-xs font-montserrat w-full h-full">
       
 
       <div className="flex justify-between items-center mb-6">

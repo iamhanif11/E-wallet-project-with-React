@@ -1,6 +1,6 @@
 function BalanceCard() {
   return (
-    <div className="information bg-white p-6  border border-gray-400  w-full font-montserrat ">
+    <div className="information bg-white p-6  border border-gray-200 rounded-xs w-full font-montserrat ">
       
       <div className="box-information flex flex-col gap-4">
         

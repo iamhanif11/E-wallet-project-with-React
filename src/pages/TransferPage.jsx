@@ -15,7 +15,6 @@ function TransferPage() {
           <FindPeople />
         </div>
       </div>
-
     </div>
   );
 }

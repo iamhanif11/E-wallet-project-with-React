@@ -3,6 +3,10 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import Joi from "joi";
 import { useNavigate, Link } from "react-router";
 import Logo from "../components/atoms/Logo";
+import { useAuth } from "../hooks/useAuth";
+import toast from "react-hot-toast";
+import { useState } from "react";
+
 
 const registerSchema = Joi.object({
   email: Joi.string()
@@ -24,6 +28,11 @@ const registerSchema = Joi.object({
 function Register() {
   const navigate = useNavigate();
 
+  const { registeredUsers, handleRegister} = useAuth()
+
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
   const {
     register,
     handleSubmit,
@@ -34,20 +43,30 @@ function Register() {
   });
 
   const onSubmit = (data) => {
-    const existUser = JSON.parse(localStorage.getItem("users") || "[]");
+    // const existUser = JSON.parse(localStorage.getItem("users") || "[]");
 
-    const isDuplicate = existUser.find((u) => u.email === data.email);
+    const isDuplicate = (registeredUsers || []).find(u => u.email === data.email);
     if (isDuplicate) {
       setError("email", { message: "Email sudah terdaftar" });
+      toast.error("Registrasi Gagal: Email sudah digunakan")
       return;
     }
+    try {
+      handleRegister(data.email, data.password)
 
-    const { _confirmPassword, ...newUser } = data;
-    const updatedUsers = [...existUser, newUser];
+      toast.success("Registrasi Berhasil! Silahkan login.")
+      navigate("/login")
+    } catch {
+      toast.error("Error")
+    }
 
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    // const { _confirmPassword, ...newUser } = data;
+    // const updatedUsers = [...existUser, newUser];
 
-    navigate("/Login");
+    // localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+    // handleRegister(data.email, data.password)
+    // navigate("/login");
   };
   return (
     <main className=" w-full min-h-screen bg-blue-600 flex font-montserrat">
@@ -91,10 +110,10 @@ function Register() {
           <hr className="w-full border border-gray-500 flex-1 " />
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className="form-group mb-3">
             <label htmlFor="email" className="font-montserrat font-medium">
-              EMail
+              E-mail
             </label>
             <div className="input-box flex items-center gap-3 border p-2 border-gray-600 rounded-sm focus-within:border-blue-600">
               <span className="icon">
@@ -102,7 +121,7 @@ function Register() {
               </span>
               <input
                 {...register("email")}
-                type="email"
+                type="text"
                 id="email"
                 className="flex-1 font-montserrat text-xs outline-none"
                 placeholder="Enter Your Email"
@@ -127,16 +146,16 @@ function Register() {
               </span>
               <input
                 {...register("password")}
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Enter Your Password"
                 id="password"
                 className="flex-1 w-full font-montserrat text-xs outline-none"
               />
-              <span>
+              <span onClick={() => setShowPassword(!showPassword)} className="cursor-pointer">
                 <img
-                  src="/EyeSlash.png"
+                  src="/eye.png"
                   alt="icon_eyeslash"
-                  className="focus:outline-none cursor-pointer"
+                  className={`w-5 h-5 object-contain focus:outline-none ${showPassword ? "opacity-100" : "opacity-40"}`}
                 />
               </span>
             </div>
@@ -154,16 +173,16 @@ function Register() {
               </span>
               <input
                 {...register("confirmPassword")}
-                type="password"
+                type={showConfirmPassword ? "text" : "password"}
                 placeholder="Enter Your Password Again"
                 id="confirmPassword"
                 className="flex-1 w-full font-montserrat text-xs outline-none"
               />
-              <span>
+              <span onClick={() => setShowConfirmPassword (!showConfirmPassword)} className="cursor-pointer">
                 <img
-                  src="/EyeSlash.png"
+                  src="/eye.png"
                   alt="icon_eyeslash"
-                  className="focus:outline-none cursor-pointer"
+                  className={`w-5 h-5 object-contain focus:outline-none  ${showConfirmPassword ? "opacity-100" : "opacity-40"} `}
                 />
               </span>
             </div>
@@ -174,7 +193,7 @@ function Register() {
             )}
           </div>
 
-          <button className="btn-submit border border-blue-600 p-2 rounded-md bg-blue-600 text-white font-montserrat">
+          <button className="btn-submit border w-full border-blue-600 p-2 rounded-md bg-blue-600 text-white font-montserrat">
             Register
           </button>
         </form>

@@ -1,7 +1,7 @@
 import DetailTransfer from "../components/DashboardPage/DetailTransfer"
-import TransferMoney from "../components/DashboardPage/Transfer"
 import DashboardHeader from "../components/DashboardPage/DashboardHeader";
 import Menu from "../components/DashboardPage/Menu";
+import TransferMoney from "../components/DashboardPage/TransferMoney";
 
 function TransferDetail(){
     return(

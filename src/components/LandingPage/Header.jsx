@@ -19,11 +19,11 @@ function Header() {
 
       <nav className="hidden md:flex gap-4">
         <Link 
-        to="/Login" className="border border-white hover:bg-blue-500 cursor-pointer rounded-sm p-2 font-montserrat text-white font-medium text-sm">
+        to="/login" className="border border-white hover:bg-blue-500 cursor-pointer rounded-sm p-2 font-montserrat text-white font-medium text-sm">
           Sign In
         </Link>
         <Link 
-        to = "/Register" className="border border-white rounded-sm bg-white hover:bg-gray-200 cursor-pointer p-2 font-montserrat text-blue-600 font-medium text-sm">
+        to = "/register" className="border border-white rounded-sm bg-white hover:bg-gray-200 cursor-pointer p-2 font-montserrat text-blue-600 font-medium text-sm">
           Sign Up
         </Link >
       </nav>
@@ -42,11 +42,11 @@ function Header() {
 
       <div className="absolute top-full left-0 w-full bg-blue-700 md:hidden flex flex-col px-6 py-6 gap-4 shadow-lg z-50">
         <Link 
-        to="/Login"className="w-full border border-white hover:bg-blue-500 cursor-pointer rounded-sm p-3 font-montserrat text-white font-medium text-sm">
+        to="/login"className="w-full border border-white hover:bg-blue-500 cursor-pointer rounded-sm p-3 font-montserrat text-white font-medium text-sm">
           Sign In
         </Link>
         <Link 
-        to="/Register" className="w-full border border-white rounded-sm bg-white hover:bg-gray-200 cursor-pointer p-3 font-montserrat text-blue-600 font-medium text-sm">
+        to="/register" className="w-full border border-white rounded-sm bg-white hover:bg-gray-200 cursor-pointer p-3 font-montserrat text-blue-600 font-medium text-sm">
           Sign Up
         </Link>
       </div>

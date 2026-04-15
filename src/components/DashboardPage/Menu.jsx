@@ -1,9 +1,21 @@
-import {NavLink} from "react-router"
+import {NavLink, useNavigate} from "react-router"
+import { useAuth } from "../../hooks/useAuth";
+import toast from "react-hot-toast";
+
 
 function Menu() {
+  const navigate = useNavigate()
+  const { handleLogout } = useAuth()
+
+  const onLogout = () => {
+  
+    handleLogout();
+    toast.success("Berhasil keluar dari akun")
+    navigate("/login", {replace: true})
+  }
   return (
     <aside className="hidden menu-bar w-64 h-max-screen md:flex flex-col pt-8 px-6 gap-2 border-r border-r-gray-400 ">
-      <NavLink to="/Dashboard"
+      <NavLink to="/dashboard"
       className="flex items-center gap-4 p-3 text-left cursor-pointer rounded-md hover:bg-blue-600 group hover:text-white">
         <img
           src="/dashboard-two (1).svg"
@@ -12,7 +24,7 @@ function Menu() {
         />
         <p>Dashboard</p>
       </NavLink>
-      <NavLink to="/Transfer"
+      <NavLink to="/transfer"
       className="flex items-center gap-4 p-3 text-left cursor-pointer rounded-md hover:bg-blue-600 group hover:text-white">
         <img
           src="/Send.svg"
@@ -29,7 +41,7 @@ function Menu() {
         />
         <p>History</p>
       </NavLink>
-      <NavLink className="flex items-center gap-4 p-3 text-left cursor-pointer rounded-md hover:bg-blue-600 group hover:text-white">
+      <NavLink to="/top-up" className="flex items-center gap-4 p-3 text-left cursor-pointer rounded-md hover:bg-blue-600 group hover:text-white">
         <img
           src="/Upload-default.svg"
           alt="top Up"
@@ -45,7 +57,8 @@ function Menu() {
         />
         <p>Profile</p>
       </NavLink>
-      <NavLink to="/"
+      <button 
+      onClick={onLogout}
       className="exit flex items-center gap-4 p-3 text-left cursor-pointer rounded-md hover:bg-red-600 group hover:text-white">
         <img
           src="/Icon.svg"
@@ -53,7 +66,7 @@ function Menu() {
           className="group-hover:brightness-0 group-hover:invert"
         />
         <p>Keluar</p>
-      </NavLink>
+      </button>
     </aside>
   );
 }

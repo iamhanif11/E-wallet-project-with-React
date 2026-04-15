@@ -1,0 +1,1 @@
+export const env=  {environment : import.meta.env.VITE_ENVIRONMENT}

@@ -5,16 +5,19 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import TransferPage from "./pages/TransferPage";
 import TransferDetail from "./pages/TransferDetail";
+import TopUp from "./pages/TopUp";
 
 function AppRouter() {
     return(
         <Routes>
             <Route path="/" element={<LandingPage/>}/>
-            <Route path="/Login" element={<Login/>}/>
-            <Route path="/Register" element={<Register/>}/>
-            <Route path= "/Dashboard" element={<Dashboard/>}/>
-            <Route path= "/Transfer" element={<TransferPage/>}/>
-            <Route path= "/Detail" element={<TransferDetail/>}></Route>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<Register/>}/>
+
+            <Route path= "/dashboard" element={<Dashboard/>}/>
+            <Route path= "/transfer" element={<TransferPage/>}/>
+            <Route path= "/detail" element={<TransferDetail/>}/>
+            <Route path= "/top-up" element={<TopUp/>}/>
         </Routes>
     )
 }

@@ -1,4 +1,4 @@
-import TransferMoney from "../components/DashboardPage/Transfer";
+import TransferMoney from "../components/DashboardPage/TransferMoney";
 import DashboardHeader from "../components/DashboardPage/DashboardHeader";
 import FindPeople from "../components/DashboardPage/FindPeople";
 import Menu from "../components/DashboardPage/Menu";

@@ -17,9 +17,17 @@ const usersSlice = createSlice({
             if (user) {
                 user.pin = pin
             }
+        },
+
+        resetUserPassword: (state, action) => {
+            const{email, newPassword} = action.payload
+            const user = state.registeredUsers.find(u => u.email === email)
+            if(user){
+                user.password = newPassword
+            }
         }
     }
 });
 
-export const { register, addPinToUser } = usersSlice.actions;
+export const { register, addPinToUser, resetUserPassword } = usersSlice.actions;
 export default usersSlice.reducer;

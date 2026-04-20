@@ -11,7 +11,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/es/storage";
 import authReducer from "./slices/authSlice";
-import { env } from "../utils/environment";
+import  env  from "../utils/environment";
+import usersReducer from "./slices/usersSlice"
 
 const persistConfig = {
   key: "e-wallet",
@@ -21,6 +22,8 @@ const persistConfig = {
 
 const persistedReducer = persistCombineReducers(persistConfig, {
   auth: authReducer,
+  users: usersReducer,
+  devTools: true,
 });
 
 export const store = configureStore({

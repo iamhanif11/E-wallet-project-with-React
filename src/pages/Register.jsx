@@ -28,7 +28,7 @@ const registerSchema = Joi.object({
 function Register() {
   const navigate = useNavigate();
 
-  const { registeredUsers, handleRegister} = useAuth()
+  const { handleRegister } = useAuth()
 
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
@@ -45,19 +45,20 @@ function Register() {
   const onSubmit = (data) => {
     // const existUser = JSON.parse(localStorage.getItem("users") || "[]");
 
-    const isDuplicate = (registeredUsers || []).find(u => u.email === data.email);
-    if (isDuplicate) {
-      setError("email", { message: "Email sudah terdaftar" });
-      toast.error("Registrasi Gagal: Email sudah digunakan")
-      return;
-    }
+    // const isDuplicate = (registeredUsers || []).find(u => u.email === data.email);
+    // if (isDuplicate) {
+    //   setError("email", { message: "Email sudah terdaftar" });
+    //   toast.error("Registrasi Gagal: Email sudah digunakan")
+    //   return;
+    
     try {
       handleRegister(data.email, data.password)
 
       toast.success("Registrasi Berhasil! Silahkan login.")
       navigate("/login")
-    } catch {
-      toast.error("Error")
+    } catch (error){
+      setError("email", {message: error.message})
+      toast.error(error.message)
     }
 
     // const { _confirmPassword, ...newUser } = data;

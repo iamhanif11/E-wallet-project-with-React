@@ -24,7 +24,7 @@ const loginSchema = Joi.object({
 
 function Login() {
   const navigate = useNavigate();
-  const { registeredUsers, handleLogin} = useAuth();
+  const { handleLogin, currentUser} = useAuth();
   const [showPassword, setShowPassword] = useState(false)
 
   const {
@@ -38,33 +38,44 @@ function Login() {
 
   const onSubmit = (data) => {
     // const users = JSON.parse(localStorage.getItem("users") || "[] ");
-    const foundUser = (registeredUsers || []).find((u) => u.email === data.email);
+    // const foundUser = (registeredUsers || []).find((u) => u.email === data.email);
 
-    if (!foundUser) {
-      setError("email", { message: "Email belum terdaftar" });
-      toast.error("Login gagal: Email belum terdaftar")
-      return;
-    }
+    // if (!foundUser) {
+    //   setError("email", { message: "Email belum terdaftar" });
+    //   toast.error("Login gagal: Email belum terdaftar")
+    //   return;
+    // }
 
-    if (foundUser.password !== data.password) {
-      setError("password", { message: "Password salah" });
-      return;
-    }
+    // if (foundUser.password !== data.password) {
+    //   setError("password", { message: "Password salah" });
+    //   return;
+    // }
     try{
-      handleLogin(foundUser);
-
+      handleLogin(data.email, data.password);
+      
       toast.success("Login Berhasil")
-      navigate("/dashboard");
+      // navigate("/dashboard");
 
-    }catch {
-      toast.error("Error")
+      if(!currentUser.pin){
+        navigate("/create-pin")
+      } else {
+        navigate("/dashboard")
+      }
+
+    }catch (error){
+      if(error.message === "Email belum terdaftar"){
+        setError("email", {message: error.message})
+      } else if (error.message === "Password Salah"){
+        setError("password", {message:error.message})
+      }
+      toast.error(`Login Gagal: ${error.message}`)
     }
 
     // sessionStorage.setItem("isLoggedIn", "true");
     // sessionStorage.setItem("currentUser", JSON.stringify
  
   };
-console.log(registeredUsers)
+
   return (
     <main className=" w-full min-h-screen bg-blue-600 flex font-montserrat">
       <section
@@ -159,7 +170,13 @@ console.log(registeredUsers)
               </p>
             )}
           </div>
-          <button className="btn-submit w-full border border-blue-600 p-2 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white font-montserrat">
+          <div className="text-right">
+            <Link to="/forgot-password"
+            className="font-medium text-primary w-full text-xs underline ">
+            Forgot Password?
+            </Link>
+          </div>
+          <button className="btn-submit w-full border border-blue-600 p-2 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white font-montserrat mt-4">
             Login
           </button>
         </form>

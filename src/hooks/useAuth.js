@@ -1,22 +1,53 @@
 import { useSelector, useDispatch } from "react-redux";
-import { register,login, logout} from '../redux/slices/authSlice'
+import {login, logout, updateSessionPin} from '../redux/slices/authSlice'
+import { addPinToUser, register as registerUser } from "../redux/slices/usersSlice";
+
+
 
 
 export const useAuth = () => {
     const dispatch = useDispatch();
-    const {isLoggedIn, currentUser, registeredUsers } = useSelector((state) => state.auth || {})
+    
+    const {registeredUsers} = useSelector((state) => state.users)
+    const {isLoggedIn, currentUser} = useSelector((state) => state.auth)
+
 
     const handleRegister = (email, password) => {
-        dispatch(register({ email, password}))
+        const isDuplicate = registeredUsers.find(u => u.email === email)
+        if (isDuplicate) {
+            throw new Error("Email sudah terdaftar")
+        }
+        dispatch (registerUser({email, password}));
+
     };
 
-    const handleLogin = (user) => {
-        dispatch(login(user))
-    };
+    const handleLogin = (email, password) => {
+        const foundUser =registeredUsers.find(u => u.email === email)
+
+        if (!foundUser) {
+            throw new Error("Email belum terdaftar")
+        }
+
+        if(foundUser.password !== password) {
+            throw new Error("Password Salah")
+        }
+
+        dispatch(login(foundUser))
+    }
 
     const handleLogout = () => {
         dispatch(logout());
     };
 
-    return { isLoggedIn : isLoggedIn || false, currentUser: currentUser || null, registeredUsers : registeredUsers || [], handleRegister, handleLogin, handleLogout};
+    const handleCreatePin = (pin) => {
+        if(!currentUser){
+            throw new Error ("Error")
+        }
+
+        dispatch(addPinToUser({email:currentUser.email, pin}))
+
+        dispatch(updateSessionPin(pin))
+    }
+
+    return { registeredUsers, isLoggedIn, currentUser, handleRegister, handleLogin, handleLogout, handleCreatePin};
 }

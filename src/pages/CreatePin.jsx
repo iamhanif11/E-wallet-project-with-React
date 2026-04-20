@@ -1,7 +1,35 @@
-import InputPin from "../components/atoms/InputPin"
+// import { Link } from "react-router";
+
+import { useState } from "react";
+import EnterPinAtom from "../components/atoms/EnterPinAtom";
 import Logo from "../components/atoms/Logo"
+import { useNavigate } from "react-router";
+import { useAuth } from "../hooks/useAuth";
+import toast from "react-hot-toast";
 
 function CreatePin() {
+  const navigate = useNavigate();
+
+  const {handleCreatePin} = useAuth();
+  const[pin, setPin] = useState(new Array(6).fill(""))
+
+  const onSubmit = () => {
+    const finalPin = pin.join("");
+
+    if (finalPin.length < 6){
+      toast.error("PIN harus 6 digit!")
+      return;
+    }
+
+    try{
+      handleCreatePin(finalPin)
+      toast.success("PIN Berhasil Dibuat")
+      navigate("/dashboard")
+    }catch (error) {
+      toast.error(error)
+    }
+
+  }
   return (
     
     <main className="flex flex-col md:flex-row min-h-screen w-full  md:bg-primary overflow-hidden">
@@ -23,28 +51,28 @@ function CreatePin() {
 
 
           <div className="py-4">
-            <InputPin />
+            <EnterPinAtom pin={pin} setPin={setPin}/>
           </div>
 
-          <button className="bg-primary w-full py-3 md:py-4 rounded-xl text-white   hover:bg-blue-700 ">
+          <button
+          onClick={onSubmit}
+          className="bg-primary w-full py-3 md:py-4 rounded-xl text-white   hover:bg-blue-700 ">
             Submit
           </button>
 
-          <div className="reset text-center text-sm">
+          {/* <div className="reset text-center text-sm">
             <p className="text-gray-500">
-              Forgot Your PIN? <span className="text-blue-600  cursor-pointer">Reset</span>
+              Forgot Your PIN? <Link to="/forgot-password" className="text-blue-600  cursor-pointer">Reset</Link>
             </p>
-          </div>
+          </div> */}
         </div>
       </section>
 
-      {/* 3. BAGIAN KANAN (Ilustrasi) */}
-      {/* hidden md:flex berarti hilang di HP, muncul sebagai flexbox di Laptop/Desktop */}
       <aside className="hidden md:flex md:w-1/2 bg-primary items-center justify-center p-10">
         <img 
           src="/character.png" 
           alt="illustration" 
-          className="w-full max-w-lg object-contain animate-float" // Tambahkan animasi jika perlu
+          className="w-full max-w-lg object-contain animate-float"
         />
       </aside>
 

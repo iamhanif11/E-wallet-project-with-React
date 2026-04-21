@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router";
 
-function FindPeople() {
+function FindHistory() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const queryFromUrl = searchParams.get("q") || "";
+  // const pageFromUrl = parseInt(searchParams.get("page")) || 1
 
   const [inputValue, setInputValue] = useState(queryFromUrl);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 10
   const people = [
     { id: 1, name: "Robert Fox", phone: "(239) 555-0108", img: "/1.svg" },
     { id: 2, name: "Floyd Miles", phone: "(480) 555-0103", img: "/1-1.svg" },
@@ -19,26 +20,11 @@ function FindPeople() {
     { id: 6, name: "Gibran", phone: "(808) 555-0111", img: "/1-6.svg" },
     { id: 7, name: "Sitepu", phone: "(671) 555-0110", img: "/1-7.svg" },
     { id: 8, name: "Sahroni", phone: "(270) 555-0117", img: "/1-8.svg" },
-    {
-      id: 9,
-      name: "Cameron Williamson",
-      phone: "(308) 555-0121",
-      img: "/1.svg",
-    },
+    { id: 9, name: "Cameron Williamson", phone: "(308) 555-0121", img: "/1.svg" },
     { id: 10, name: "Cody Fisher", phone: "(704) 555-0127", img: "/1-1.svg" },
-    {
-      id: 11,
-      name: "Kristin Watson",
-      phone: "(603) 555-0123",
-      img: "/1-4.svg",
-    },
+    { id: 11, name: "Kristin Watson", phone: "(603) 555-0123", img: "/1-4.svg" },
     { id: 12, name: "Wade Warren", phone: "(225) 555-0118", img: "/1-2.svg" },
-    {
-      id: 13,
-      name: "Savannah Nguyen",
-      phone: "(217) 555-0113",
-      img: "/1-5.svg",
-    },
+    { id: 13, name: "Savannah Nguyen", phone: "(217) 555-0113", img: "/1-5.svg" },
     { id: 14, name: "Budi Santoso", phone: "(812) 555-0101", img: "/1-6.svg" },
     { id: 15, name: "Siti Aminah", phone: "(813) 555-0102", img: "/1-7.svg" },
     { id: 16, name: "Joko Widodo", phone: "(814) 555-0103", img: "/1-8.svg" },
@@ -48,85 +34,46 @@ function FindPeople() {
     { id: 20, name: "Agus Pratama", phone: "(818) 555-0107", img: "/1-2.svg" },
     { id: 21, name: "Rina Amelia", phone: "(819) 555-0108", img: "/1-5.svg" },
     { id: 22, name: "Toni Kusuma", phone: "(820) 555-0109", img: "/1-6.svg" },
-    {
-      id: 23,
-      name: "Dian Sastrowardoyo",
-      phone: "(821) 555-0110",
-      img: "/1-7.svg",
-    },
+    { id: 23, name: "Dian Sastrowardoyo", phone: "(821) 555-0110", img: "/1-7.svg" },
     { id: 24, name: "Eko Yuli", phone: "(822) 555-0111", img: "/1-8.svg" },
     { id: 25, name: "Fitriani", phone: "(823) 555-0112", img: "/1.svg" },
     { id: 26, name: "Gilang Dirga", phone: "(824) 555-0113", img: "/1-1.svg" },
-    {
-      id: 27,
-      name: "Hendra Setiawan",
-      phone: "(825) 555-0114",
-      img: "/1-4.svg",
-    },
+    { id: 27, name: "Hendra Setiawan", phone: "(825) 555-0114", img: "/1-4.svg" },
     { id: 28, name: "Iwan Fals", phone: "(826) 555-0115", img: "/1-2.svg" },
     { id: 29, name: "Bunga Citra", phone: "(827) 555-0116", img: "/1-5.svg" },
     { id: 30, name: "Kevin Sanjaya", phone: "(828) 555-0117", img: "/1-6.svg" },
     { id: 31, name: "Lesti Kejora", phone: "(829) 555-0118", img: "/1-7.svg" },
-    {
-      id: 32,
-      name: "Mohammad Ahsan",
-      phone: "(830) 555-0119",
-      img: "/1-8.svg",
-    },
+    { id: 32, name: "Mohammad Ahsan", phone: "(830) 555-0119", img: "/1-8.svg" },
     { id: 33, name: "Nia Ramadhani", phone: "(831) 555-0120", img: "/1.svg" },
-    {
-      id: 34,
-      name: "Okan Kornelius",
-      phone: "(832) 555-0121",
-      img: "/1-1.svg",
-    },
+    { id: 34, name: "Okan Kornelius", phone: "(832) 555-0121", img: "/1-1.svg" },
     { id: 35, name: "Putri KW", phone: "(833) 555-0122", img: "/1-4.svg" },
     { id: 36, name: "Rizky Billar", phone: "(834) 555-0123", img: "/1-2.svg" },
     { id: 37, name: "Sule", phone: "(835) 555-0124", img: "/1-5.svg" },
     { id: 38, name: "Tukul Arwana", phone: "(836) 555-0125", img: "/1-6.svg" },
-    {
-      id: 39,
-      name: "Ussy Sulistiawaty",
-      phone: "(837) 555-0126",
-      img: "/1-7.svg",
-    },
+    { id: 39, name: "Ussy Sulistiawaty", phone: "(837) 555-0126", img: "/1-7.svg" },
     { id: 40, name: "Vidi Aldiano", phone: "(838) 555-0127", img: "/1-8.svg" },
     { id: 41, name: "Wulan Guritno", phone: "(839) 555-0128", img: "/1.svg" },
     { id: 42, name: "Yuki Kato", phone: "(840) 555-0129", img: "/1-1.svg" },
-    {
-      id: 43,
-      name: "Zaskia Sungkar",
-      phone: "(841) 555-0130",
-      img: "/1-4.svg",
-    },
+    { id: 43, name: "Zaskia Sungkar", phone: "(841) 555-0130", img: "/1-4.svg" },
     { id: 44, name: "Ahmad Dhani", phone: "(842) 555-0131", img: "/1-2.svg" },
     { id: 45, name: "Ariel Noah", phone: "(843) 555-0132", img: "/1-5.svg" },
     { id: 46, name: "Judika", phone: "(844) 555-0133", img: "/1-6.svg" },
-    {
-      id: 47,
-      name: "Isyana Sarasvati",
-      phone: "(845) 555-0134",
-      img: "/1-7.svg",
-    },
-    {
-      id: 48,
-      name: "Raisa Andriana",
-      phone: "(846) 555-0135",
-      img: "/1-8.svg",
-    },
+    { id: 47, name: "Isyana Sarasvati", phone: "(845) 555-0134", img: "/1-7.svg" },
+    { id: 48, name: "Raisa Andriana", phone: "(846) 555-0135", img: "/1-8.svg" },
     { id: 49, name: "Afgan Syahreza", phone: "(847) 555-0136", img: "/1.svg" },
-    { id: 50, name: "Tulus", phone: "(848) 555-0137", img: "/1-1.svg" },
+    { id: 50, name: "Tulus", phone: "(848) 555-0137", img: "/1-1.svg" }
   ];
 
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-    setCurrentPage(1);
-  };
+    setInputValue(e.target.value)
+    setCurrentPage(1)
+  }
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
+      
       if (inputValue) {
-        setSearchParams({ q: inputValue });
+        setSearchParams({q: inputValue});
       } else {
         setSearchParams({});
       }
@@ -141,26 +88,21 @@ function FindPeople() {
       person.phone.includes(inputValue),
   );
 
-  const totalItems = filteredPeople.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
+  const totalItems = filteredPeople.length
+  const totalPages = Math.ceil(totalItems / itemsPerPage) || 1
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedPeople = filteredPeople.slice(
-    startIndex,
-    startIndex + itemsPerPage,
-  );
+  const startIndex = (currentPage -1) * itemsPerPage;
+  const paginatedPeople = filteredPeople.slice(startIndex, startIndex + itemsPerPage)
 
-  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const pageNumbers = Array.from({ length: totalPages }, (_,i) => i + 1)
 
-  const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
-  const handleNext = () =>
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-
+  const handlePrev = () => setCurrentPage((prev) => Math.max(prev -1, 1))
+  const handleNext = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages))
   return (
     <section className="bg-white rounded-md p-6 shadow-sm border border-gray-100">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
-          <h3 className="text-xl font-bold text-black">Find People</h3>
+          <h3 className="text-xl font-bold text-black">Find History</h3>
           <p className="text-sm text-gray-500 mt-1">
             {/* {filteredPeople.length} Result Found For{" "}
             {queryFromUrl || "Everyone"}{" "} */}
@@ -202,21 +144,24 @@ function FindPeople() {
                     className=" w-10 h-10 md:w-12 md:h-12 rounded-sm object-cover"
                   />
                 </td>
-                <td className="py-2 px-3 md:py-3 md:px-4 whitespace-nowrap">
-                  <Link
-                    to="/Detail"
-                    className="py-3 px-4 text-center text-sm md:text-base font-medium text-black"
-                  >
+                <td className="py-3 px-4 text-center text-sm md:text-base font-medium text-black">
+                
+                    {/* className="py-3 px-4 text-center text-sm md:text-base font-medium text-black" */}
+
                     {person.name}
-                  </Link>
                 </td>
+
+                <td className="py-3 px-4 text-xs md:text-sm text-gray-500">
+                  Rp. 50.000
+                </td>
+
                 <td className="py-3 px-4 text-xs md:text-sm text-gray-500">
                   {person.phone}
                 </td>
                 <td className="py-3 px-4 text-right">
                   <button className="p-2 hover:bg-gray-200 rounded-full transition-colors">
                     <img
-                      src="/Star.svg"
+                      src="/Trash.svg"
                       alt="favorit"
                       className="w-5 h-5 opacity-60"
                     />
@@ -227,7 +172,12 @@ function FindPeople() {
           </tbody>
         </table>
 
-        {filteredPeople.length === 0 && <div>Data tidak ditemukan</div>}
+        {filteredPeople.length === 0 && (
+          <div>
+            Data tidak ditemukan
+          </div>
+        )}
+
       </div>
 
       {totalItems > 0 && (
@@ -273,4 +223,4 @@ function FindPeople() {
   );
 }
 
-export default FindPeople;
+export default FindHistory;

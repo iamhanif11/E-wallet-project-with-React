@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router";
 import Logo from "../components/atoms/Logo";
 import {useAuth} from "../hooks/useAuth"
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const loginSchema = Joi.object({
@@ -36,6 +36,16 @@ function Login() {
     resolver: joiResolver(loginSchema),
   });
 
+  useEffect(() => {
+    if (currentUser) {
+      if(!currentUser.pin){
+        navigate("/create-pin")
+      } else {
+        navigate("/dashboard")
+      }
+  
+    }
+  }, [currentUser])
   const onSubmit = (data) => {
     // const users = JSON.parse(localStorage.getItem("users") || "[] ");
     // const foundUser = (registeredUsers || []).find((u) => u.email === data.email);
@@ -55,12 +65,6 @@ function Login() {
       
       toast.success("Login Berhasil")
       // navigate("/dashboard");
-
-      if(!currentUser.pin){
-        navigate("/create-pin")
-      } else {
-        navigate("/dashboard")
-      }
 
     }catch (error){
       if(error.message === "Email belum terdaftar"){
@@ -158,7 +162,7 @@ function Login() {
               />
               <span onClick={() => setShowPassword (!showPassword)} className="cursor-pointer">
                 <img
-                  src="/EyeSlash.png"
+                  src="/eye.png"
                   alt="icon_eyeslash"
                   className={`w-5 h-5 object-contain focus:outline-none ${showPassword ? "opacity-100" : "opacity-40"}`}
                 />

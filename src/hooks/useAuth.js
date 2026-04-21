@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import {login, logout, updateSessionPin} from '../redux/slices/authSlice'
-import { addPinToUser, register as registerUser } from "../redux/slices/usersSlice";
+import { addPinToUser, register as registerUser, resetUserPassword } from "../redux/slices/usersSlice";
 
 
 
@@ -49,5 +49,18 @@ export const useAuth = () => {
         dispatch(updateSessionPin(pin))
     }
 
-    return { registeredUsers, isLoggedIn, currentUser, handleRegister, handleLogin, handleLogout, handleCreatePin};
+    const handleCheckEmailForgot = (email) => {
+        const foundUser = registeredUsers.find(u => u.email === email)
+        if (!foundUser) {
+            throw new Error ("Email tidak terdaftar")
+        }
+
+        return true
+    }
+
+    const handleNewPassword = (email, newPassword) => {
+        dispatch(resetUserPassword({email, newPassword}));
+    }
+
+    return { registeredUsers, isLoggedIn, currentUser, handleRegister, handleLogin, handleLogout, handleCreatePin, handleCheckEmailForgot, handleNewPassword};
 }

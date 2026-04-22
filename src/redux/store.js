@@ -17,7 +17,7 @@ import usersReducer from "./slices/usersSlice"
 const persistConfig = {
   key: "e-wallet",
   storage,
-  whitelist: ["auth"],
+  whitelist: ["auth","users"],
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, {

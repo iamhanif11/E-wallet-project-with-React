@@ -14,7 +14,7 @@ function Menu() {
     navigate("/login", {replace: true})
   }
   return (
-    <aside className="hidden menu-bar w-64 h-max-screen md:flex flex-col pt-8 px-6 gap-2 border-r border-r-gray-400 ">
+    <aside className="hidden menu-bar w-64 h-max-screen md:flex flex-col pt-8 px-6 gap-2 ">
       <NavLink to="/dashboard"
       className="flex items-center gap-4 p-3 text-left cursor-pointer rounded-md hover:bg-blue-600 group hover:text-white">
         <img
@@ -33,7 +33,8 @@ function Menu() {
         />
         <p>Transfer</p>
       </NavLink>
-      <NavLink className="flex items-center gap-4 p-3 text-left cursor-pointer rounded-md hover:bg-blue-600 group hover:text-white">
+      <NavLink to="/history"
+      className="flex items-center gap-4 p-3 text-left cursor-pointer rounded-md hover:bg-blue-600 group hover:text-white">
         <img
           src="/history.svg"
           alt="history"
@@ -49,7 +50,8 @@ function Menu() {
         />
         <p>Top Up</p>
       </NavLink>
-      <NavLink className="flex items-center gap-4 p-3 text-left cursor-pointer rounded-md hover:bg-blue-600 group hover:text-white">
+      <NavLink to="/edit-profile"
+      className="flex items-center gap-4 p-3 text-left cursor-pointer rounded-md hover:bg-blue-600 group hover:text-white">
         <img
           src="/2 User.svg"
           alt="profile"

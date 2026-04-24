@@ -29,7 +29,7 @@ function DashboardHeader() {
         className="profil flex gap-4 items-center cursor-pointer"
         onClick={toggleDropdown}
       >
-        <p className="font-montserrat hidden md:block">{currentUser?.email?.split('@')[0] || "User"}</p>
+        <p className="font-montserrat hidden md:block">{currentUser?.email || "User"}</p>
         <img src="/Ellipse 185.svg" className="w-10" alt="photo-profil" />
         <img
           src="/down.svg"
@@ -39,8 +39,8 @@ function DashboardHeader() {
       </div>
 
       {isDropdownOpen && (
-        <div className="absolute right-8 top-full mt-2 w-48 bg-white border border-gray-100 shadow-xl rounded-md p-2 z-50 ">
-          <p className="font-semibold mt-4 md:hidden">Hello, {currentUser?.email?.split('@')[0]}</p>
+        <div className="absolute right-8 top-full mt-2 w-55 bg-white border border-gray-100 shadow-xl rounded-md p-2 z-50 ">
+          <p className="font-semibold mt-4 md:hidden">Hello, {currentUser?.email}</p>
           <div className="md:hidden flex flex-col gap-1 border-b border-gray-200 pb-2 mb-2">
             <NavLink
               to="/dashboard"
@@ -87,7 +87,8 @@ function DashboardHeader() {
               <span className="text-sm font-medium">Top Up</span>
             </NavLink>
 
-            <NavLink className="flex items-center gap-3 p-3 text-black hover:bg-blue-600 hover:text-white rounded-md transition-colors group">
+            <NavLink to="/edit-profile"
+            className="flex items-center gap-3 p-3 text-black hover:bg-blue-600 hover:text-white rounded-md transition-colors group">
               <img
                 src="/2 User.svg"
                 alt="profile"
@@ -108,12 +109,13 @@ function DashboardHeader() {
             </button>
           </div>
 
-          <button className="hidden md:flex items-center gap-3 w-full p-3 text-primary bg-white rounded-md mb-1 hover:bg-blue-700 hover:text-white transition-colors">
+          <NavLink to="/edit-profile"
+          className="hidden md:flex items-center gap-3 w-full p-3 text-primary bg-white rounded-md mb-1 hover:bg-blue-700 hover:text-white transition-colors">
             <div className="w-5 h-5 flex items-center justify-center">
               <img src="/2 User.svg" className="invert" alt="user" />
             </div>
             <span className="text-sm font-medium">Profile</span>
-          </button>
+          </NavLink>
 
           <button 
           onClick={onLogout}

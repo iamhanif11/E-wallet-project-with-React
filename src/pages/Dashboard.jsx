@@ -10,7 +10,7 @@ function Dashboard() {
         <div className="min-h-screen flex flex-col font-montserrat">
             <DashboardHeader />
             <div className="flex flex-1 overflow-hidden">
-                <div className="hidden md:block bg-white border-r bprder-gray-200 ">
+                <div className="hidden md:block bg-white border-r border-gray-200 ">
                     <Menu />
                 </div>
 

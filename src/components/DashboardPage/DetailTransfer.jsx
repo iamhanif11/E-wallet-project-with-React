@@ -1,4 +1,4 @@
-function DetailTransfer() {
+function DetailTransfer({onConfirm}) {
   return (
     <section className="bg-white rounded-xs p-6  border border-gray-100 ">
       
@@ -57,7 +57,10 @@ function DetailTransfer() {
       </div>
 
 
-      <button className="w-full bg-primary hover:bg-blue-700 text-white  py-4 rounded-md">
+      <button 
+      type="button"
+      onClick={onConfirm}
+      className="w-full bg-primary hover:bg-blue-700 text-white  py-4 rounded-md">
         Submit & Transfer
       </button>
       

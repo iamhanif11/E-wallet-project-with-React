@@ -15,11 +15,12 @@ function ButtonDownload({icon, text, altText,imgSize, invertOnHover,variant}){
         primary: 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700',
         secondary: 'bg-white text-blue-600 border-white hover:bg-gray-100',
         outline: 'bg-transparant border-white text-white hover:bg-white hover:text-blue-600',
-        outlineBlue: 'bg-transparant border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hover:border-white'
+        outlineBlue: 'bg-transparant border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white hover:border-white',
+        red: 'bg-transparant border-red-600 text-red-600 hover:bg-red-600 hover:text-white hover:border-white'
     }
 
     return (
-        <button className= {`group border flex justify-center items-center gap-4 flex-1 p-2  rounded-md cursor-pointer ${colorVariant[variant]}`}>
+        <button className= {`group border flex justify-center items-center gap-2 flex-1 p-2  rounded-md cursor-pointer ${colorVariant[variant]}`}>
             <img 
             src={icon} 
             alt={altText} 

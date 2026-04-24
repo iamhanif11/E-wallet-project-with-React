@@ -10,7 +10,7 @@ import { Link } from "react-router";
  */
 function Logo ({textColor, className = ""}){
     return(
-        <Link to="/" className={`flex items-center cursor-pointer gap-2 ${className}`}>
+        <Link to="/login" className={`flex items-center cursor-pointer gap-2 ${className}`}>
         <img
           src="/money_wallet.png"
           alt="icon-logo"

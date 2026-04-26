@@ -3,7 +3,7 @@ import EnterPinAtom from "../atoms/EnterPinAtom"
 import { Link } from "react-router"
 
 
-function EnterPin(onConfirm) {
+function EnterPin({onConfirm}) {
   const [pin, setPin] = useState(new Array(6).fill(""))
   const [errMessage, setErrMessage] = useState("")
 

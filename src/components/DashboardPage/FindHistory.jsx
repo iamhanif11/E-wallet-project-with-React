@@ -1,69 +1,22 @@
 import { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
+import { useAuth } from "../../hooks/useAuth";
+
 
 function FindHistory() {
+  const { currentUser, registeredUsers } = useAuth()
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const activeUser = registeredUsers.find((u) => u.email === currentUser?.email)
+  const historyTrx = activeUser?.history || []
 
   const queryFromUrl = searchParams.get("q") || "";
   // const pageFromUrl = parseInt(searchParams.get("page")) || 1
-
   const [inputValue, setInputValue] = useState(queryFromUrl);
 
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
-  const people = [
-    { id: 1, name: "Robert Fox", phone: "(239) 555-0108", img: "/1.svg" },
-    { id: 2, name: "Floyd Miles", phone: "(480) 555-0103", img: "/1-1.svg" },
-    { id: 3, name: "Ujang", phone: "(225) 555-0118", img: "/1-4.svg" },
-    { id: 4, name: "Raul Melos", phone: "(406) 555-0120", img: "/1-2.svg" },
-    { id: 5, name: "Ganjar", phone: "(303) 555-0105", img: "/1-5.svg" },
-    { id: 6, name: "Gibran", phone: "(808) 555-0111", img: "/1-6.svg" },
-    { id: 7, name: "Sitepu", phone: "(671) 555-0110", img: "/1-7.svg" },
-    { id: 8, name: "Sahroni", phone: "(270) 555-0117", img: "/1-8.svg" },
-    { id: 9, name: "Cameron Williamson", phone: "(308) 555-0121", img: "/1.svg" },
-    { id: 10, name: "Cody Fisher", phone: "(704) 555-0127", img: "/1-1.svg" },
-    { id: 11, name: "Kristin Watson", phone: "(603) 555-0123", img: "/1-4.svg" },
-    { id: 12, name: "Wade Warren", phone: "(225) 555-0118", img: "/1-2.svg" },
-    { id: 13, name: "Savannah Nguyen", phone: "(217) 555-0113", img: "/1-5.svg" },
-    { id: 14, name: "Budi Santoso", phone: "(812) 555-0101", img: "/1-6.svg" },
-    { id: 15, name: "Siti Aminah", phone: "(813) 555-0102", img: "/1-7.svg" },
-    { id: 16, name: "Joko Widodo", phone: "(814) 555-0103", img: "/1-8.svg" },
-    { id: 17, name: "Andi Wijaya", phone: "(815) 555-0104", img: "/1.svg" },
-    { id: 18, name: "Maya Sari", phone: "(816) 555-0105", img: "/1-1.svg" },
-    { id: 19, name: "Dedi Setiawan", phone: "(817) 555-0106", img: "/1-4.svg" },
-    { id: 20, name: "Agus Pratama", phone: "(818) 555-0107", img: "/1-2.svg" },
-    { id: 21, name: "Rina Amelia", phone: "(819) 555-0108", img: "/1-5.svg" },
-    { id: 22, name: "Toni Kusuma", phone: "(820) 555-0109", img: "/1-6.svg" },
-    { id: 23, name: "Dian Sastrowardoyo", phone: "(821) 555-0110", img: "/1-7.svg" },
-    { id: 24, name: "Eko Yuli", phone: "(822) 555-0111", img: "/1-8.svg" },
-    { id: 25, name: "Fitriani", phone: "(823) 555-0112", img: "/1.svg" },
-    { id: 26, name: "Gilang Dirga", phone: "(824) 555-0113", img: "/1-1.svg" },
-    { id: 27, name: "Hendra Setiawan", phone: "(825) 555-0114", img: "/1-4.svg" },
-    { id: 28, name: "Iwan Fals", phone: "(826) 555-0115", img: "/1-2.svg" },
-    { id: 29, name: "Bunga Citra", phone: "(827) 555-0116", img: "/1-5.svg" },
-    { id: 30, name: "Kevin Sanjaya", phone: "(828) 555-0117", img: "/1-6.svg" },
-    { id: 31, name: "Lesti Kejora", phone: "(829) 555-0118", img: "/1-7.svg" },
-    { id: 32, name: "Mohammad Ahsan", phone: "(830) 555-0119", img: "/1-8.svg" },
-    { id: 33, name: "Nia Ramadhani", phone: "(831) 555-0120", img: "/1.svg" },
-    { id: 34, name: "Okan Kornelius", phone: "(832) 555-0121", img: "/1-1.svg" },
-    { id: 35, name: "Putri KW", phone: "(833) 555-0122", img: "/1-4.svg" },
-    { id: 36, name: "Rizky Billar", phone: "(834) 555-0123", img: "/1-2.svg" },
-    { id: 37, name: "Sule", phone: "(835) 555-0124", img: "/1-5.svg" },
-    { id: 38, name: "Tukul Arwana", phone: "(836) 555-0125", img: "/1-6.svg" },
-    { id: 39, name: "Ussy Sulistiawaty", phone: "(837) 555-0126", img: "/1-7.svg" },
-    { id: 40, name: "Vidi Aldiano", phone: "(838) 555-0127", img: "/1-8.svg" },
-    { id: 41, name: "Wulan Guritno", phone: "(839) 555-0128", img: "/1.svg" },
-    { id: 42, name: "Yuki Kato", phone: "(840) 555-0129", img: "/1-1.svg" },
-    { id: 43, name: "Zaskia Sungkar", phone: "(841) 555-0130", img: "/1-4.svg" },
-    { id: 44, name: "Ahmad Dhani", phone: "(842) 555-0131", img: "/1-2.svg" },
-    { id: 45, name: "Ariel Noah", phone: "(843) 555-0132", img: "/1-5.svg" },
-    { id: 46, name: "Judika", phone: "(844) 555-0133", img: "/1-6.svg" },
-    { id: 47, name: "Isyana Sarasvati", phone: "(845) 555-0134", img: "/1-7.svg" },
-    { id: 48, name: "Raisa Andriana", phone: "(846) 555-0135", img: "/1-8.svg" },
-    { id: 49, name: "Afgan Syahreza", phone: "(847) 555-0136", img: "/1.svg" },
-    { id: 50, name: "Tulus", phone: "(848) 555-0137", img: "/1-1.svg" }
-  ];
-
+ 
   const handleInputChange = (e) => {
     setInputValue(e.target.value)
     setCurrentPage(1)
@@ -82,17 +35,19 @@ function FindHistory() {
     return () => clearTimeout(timeoutId);
   }, [inputValue, setSearchParams]);
 
-  const filteredPeople = people.filter(
-    (person) =>
-      person.name.toLocaleLowerCase().includes(inputValue.toLowerCase()) ||
-      person.phone.includes(inputValue),
-  );
+  const filteredHistory = historyTrx.filter(
+    (item) =>
+      item.name.toLowerCase().includes(inputValue.toLocaleLowerCase()) ||
+      item.type.toLowerCase().includes(inputValue.toLocaleLowerCase())
+  )
 
-  const totalItems = filteredPeople.length
+  const totalItems = filteredHistory.length
   const totalPages = Math.ceil(totalItems / itemsPerPage) || 1
 
   const startIndex = (currentPage -1) * itemsPerPage;
-  const paginatedPeople = filteredPeople.slice(startIndex, startIndex + itemsPerPage)
+  const paginatedPeople = [...filteredHistory]
+  .reverse()
+  .slice(startIndex, startIndex + itemsPerPage)
 
   const pageNumbers = Array.from({ length: totalPages }, (_,i) => i + 1)
 
@@ -132,15 +87,15 @@ function FindHistory() {
       <div className="overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0">
         <table className="w-full min-w-lg md:min-w-full border-spacing-y-0">
           <tbody>
-            {paginatedPeople.map((person, index) => (
+            {paginatedPeople.map((item, index) => (
               <tr
-                key={person.id}
+                key={item.id}
                 className={`${index % 2 === 0 ? "bg-white" : "bg-[#F9FAFB]"} transition-colors hover:bg-blue-50`}
               >
                 <td className="py-2 px-3 md:py-3 md:px-4 w-12 md:w-16">
                   <img
-                    src={person.img}
-                    alt={person.name}
+                    src={item.image}
+                    alt={item.name}
                     className=" w-10 h-10 md:w-12 md:h-12 rounded-sm object-cover"
                   />
                 </td>
@@ -148,7 +103,7 @@ function FindHistory() {
                 
                     {/* className="py-3 px-4 text-center text-sm md:text-base font-medium text-black" */}
 
-                    {person.name}
+                    {item.name}
                 </td>
 
                 <td className="py-3 px-4 text-xs md:text-sm text-gray-500">
@@ -156,7 +111,7 @@ function FindHistory() {
                 </td>
 
                 <td className="py-3 px-4 text-xs md:text-sm text-gray-500">
-                  {person.phone}
+                  {item.phone}
                 </td>
                 <td className="py-3 px-4 text-right">
                   <button className="p-2 hover:bg-gray-200 rounded-full transition-colors">
@@ -172,7 +127,7 @@ function FindHistory() {
           </tbody>
         </table>
 
-        {filteredPeople.length === 0 && (
+        {totalItems.length === 0 && (
           <div>
             Data tidak ditemukan
           </div>
@@ -201,7 +156,7 @@ function FindHistory() {
                 onClick={() => setCurrentPage(num)}
                 className={`w-8 h-8 flex items-center justify-center rounded-md font-medium transition-all ${
                   currentPage === num
-                    ? "text-[#4A3AFF] font-bold bg-blue-50"
+                    ? "text-primary font-bold bg-blue-50"
                     : "hover:bg-gray-100"
                 }`}
               >
@@ -212,7 +167,7 @@ function FindHistory() {
             <button
               onClick={handleNext}
               disabled={currentPage === totalPages}
-              className="px-2 py-1 font-medium text-black hover:text-[#4A3AFF] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="px-2 py-1 font-medium text-black hover:text-primary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Next
             </button>

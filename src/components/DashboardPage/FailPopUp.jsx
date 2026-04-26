@@ -1,5 +1,5 @@
 
-function FailPopUp({onClose}) {
+function FailPopUp({onClose, onRetry}) {
   return (
     <section className="p-8">
       <p className="font-semibold">Transfer to </p>
@@ -12,7 +12,9 @@ function FailPopUp({onClose}) {
         <p className="text-sm text-gray-400 text-center">Sorry Theres is an issue for your transfer, try again later !</p>
       </div>
 
-      <button className="btn-submit w-full border border-blue-600 p-2 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white font-montserrat mt-4">
+      <button
+      onClick={onRetry}
+      className="btn-submit w-full border border-blue-600 p-2 rounded-md bg-blue-600 hover:bg-blue-700 cursor-pointer text-white font-montserrat mt-4">
         Try Again
       </button>
 

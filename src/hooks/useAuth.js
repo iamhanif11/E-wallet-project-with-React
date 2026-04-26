@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import {login, logout, updateSessionPin} from '../redux/slices/authSlice'
-import { addPinToUser, register as registerUser, resetUserPassword } from "../redux/slices/usersSlice";
+import { addPinToUser, register as registerUser, resetUserPassword, topUp, transferOut } from "../redux/slices/usersSlice";
 
 
 
@@ -35,6 +35,28 @@ export const useAuth = () => {
         dispatch(login(foundUser))
     }
 
+    const handleTopUp = (amount) => {
+        if (!currentUser) throw new Error("Sesi anda salah!")
+        
+        dispatch(topUp({ email: currentUser.email, amount }))
+    }
+
+    const handleTransfer = ({amount, recipientName, recipientImage}) => {
+        if (!currentUser) throw new Error ("Sesi anda salah")
+
+        const userTrx = registeredUsers.find(u => u.email === currentUser?.email)
+
+        if (userTrx.balance < Number (amount)) {
+            throw new Error ("Saldo tidak mencukupi")
+        }
+
+        dispatch(transferOut({ 
+            email: currentUser.email, 
+            amount,
+            recipientName,
+            recipientImage}))
+    }
+
     const handleLogout = () => {
         dispatch(logout());
     };
@@ -62,5 +84,5 @@ export const useAuth = () => {
         dispatch(resetUserPassword({email, newPassword}));
     }
 
-    return { registeredUsers, isLoggedIn, currentUser, handleRegister, handleLogin, handleLogout, handleCreatePin, handleCheckEmailForgot, handleNewPassword};
+    return { registeredUsers, isLoggedIn, currentUser, handleRegister, handleLogin, handleLogout, handleCreatePin, handleCheckEmailForgot, handleNewPassword, handleTopUp, handleTransfer};
 }

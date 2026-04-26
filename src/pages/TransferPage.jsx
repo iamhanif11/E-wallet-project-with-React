@@ -3,6 +3,7 @@ import DashboardHeader from "../components/DashboardPage/DashboardHeader";
 import FindPeople from "../components/DashboardPage/FindPeople";
 import Menu from "../components/DashboardPage/Menu";
 
+
 function TransferPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#F8F9FB] font-montserrat">

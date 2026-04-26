@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 
 function FindPeople() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate()
 
   const queryFromUrl = searchParams.get("q") || "";
-
   const [inputValue, setInputValue] = useState(queryFromUrl);
-
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const people = [
@@ -118,6 +117,10 @@ function FindPeople() {
     { id: 50, name: "Tulus", phone: "(848) 555-0137", img: "/1-1.svg" },
   ];
 
+const handleSelectPerson = (person) => {
+  navigate("/detail", {state: {selectedPerson:person }})
+}
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
     setCurrentPage(1);
@@ -193,6 +196,7 @@ function FindPeople() {
             {paginatedPeople.map((person, index) => (
               <tr
                 key={person.id}
+                onClick={() => handleSelectPerson(person)}
                 className={`${index % 2 === 0 ? "bg-white" : "bg-[#F9FAFB]"} transition-colors hover:bg-blue-50`}
               >
                 <td className="py-2 px-3 md:py-3 md:px-4 w-12 md:w-16">
@@ -203,18 +207,19 @@ function FindPeople() {
                   />
                 </td>
                 <td className="py-2 px-3 md:py-3 md:px-4 whitespace-nowrap">
-                  <Link
-                    to="/Detail"
+                  <div
                     className="py-3 px-4 text-center text-sm md:text-base font-medium text-black"
                   >
                     {person.name}
-                  </Link>
+                  </div>
                 </td>
                 <td className="py-3 px-4 text-xs md:text-sm text-gray-500">
                   {person.phone}
                 </td>
                 <td className="py-3 px-4 text-right">
-                  <button className="p-2 hover:bg-gray-200 rounded-full transition-colors">
+                  <button 
+                  onClick={(e) => e.stopPropagation()}
+                  className="p-2 hover:bg-gray-200 rounded-full transition-colors">
                     <img
                       src="/Star.svg"
                       alt="favorit"

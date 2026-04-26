@@ -10,7 +10,7 @@ import DownloadSection from "../components/LandingPage/DownloadSection";
 
 function LandingPage(){
     return(
-        <body>
+        <div>
             <Header/>
             <main>
                 <HeroSection/>
@@ -22,7 +22,7 @@ function LandingPage(){
                 <DownloadSection/>     
             </main>
             <Footer/>
-        </body>
+        </div>
     )
 }
 

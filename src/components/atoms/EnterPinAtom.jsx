@@ -24,7 +24,7 @@ function EnterPinAtom({pin, setPin}) {
     }
   return (
     <div className="flex gap-2">
-        {pin && pin.map((digit, index) => (
+        {pin.map((digit, index) => (
             <input 
             key={index}
             type="password"

@@ -1,0 +1,74 @@
+Weekly 7 
+
+1.Perbedaan antara linux kernel dan distro
+Linux kernel adalah bagian inti dari sistem operasi yang bertugas menjembatani antara hardware dan software. Yang berguna untuk berkomunikasi dengan hardware,memberikan dukungan dasar driver dan mentralasikan serta menjalankan program. 
+Sedangkan distro linux adalah variasi operasi linux yang dibuat menggunakan kernel linux sebagai intinya membungkus kernel dengan software-software tambahan. Berfungsi memberikan pengalaman pengguna seperti (UI, app, sistem manajemen paket) Contoh: Slackware, Debian, Red Hat Enterprise LInux, Fedora dan Ubuntu.
+
+2. File System Hierarchy (FHS) adalah cara mengatur linux directory dan isi dari directory tersebut dalam sistem operasi berbasis Unix. Membantu pengguna dan sistem mengetahui kemana harus mencari berkas tertentu, Contoh penggunaanya:
+- Mengedit config jaringan dimana berkas config di direktori nano /etc/network/interface 
+- Melihat daftar file /bin/ls
+- Melihat log error sistem disimpan di var/log
+Tail -f /var/log/sylog
+
+3. Sistem Permission dan owner adalah mekanisme keamanan yang mengatur hak akses pengguna terhadap file dan direktori. Permission menentukan siapa yang dapat read, write & execution, sementara itu ownership mengidentifikasi pemilik file atau direktori.
+Setiap file atau direktori dalam linux terdir:
+User: Pengguna yang membuat file atau directory(secara default owner)
+Group: sekelompok pengguna yang berbagi hak akses 
+Others: semua pengguan diluar user dan group
+
+-rwxr-xr--  1 user group 1234 Jan 01 12:00 script.sh
+
+rwx (user) : memiliki hak baca, tulis dan eksekusi
+r-x  (group) : memiliki hak baca dan eksekusi
+r- - : read-only
+
+4. SSH (secure shell) adalah protokol jaringan yang memungkinkan komunikasi terenkripsi antara klien dan server. SSH menggunakan prinsip end-to-end enkripsi untuk melindungi data selama ditransmisikan di jaringan.
+Berikut komponen utama dan prinsip enkripsi SSH:
+- Enkripsi simetris, saat sesi terhubung, SSH menggunakan shared key yang dipertukarkan oleh klien dan server untuk mengenkripsi seluruh komunikasi data.
+- Enkripsi Asimetris, SSH menggunakan public key dan private key. Kunci publik digunakan untuk enkripsi, sedangkan private key untuk dekripsi. Metode ini digunakan terutama pada tahap autentikasi dan pertukaran kunci sesi, dimana klien memverifikasi server dan sebaliknya.
+- Hashing: SSH menggunakan algoritma hashing untuk menjamin integritas data. Dengan hashing, data yang dikirimkan tidak dapat diubah oleh pihak ketiga.
+- Pertukaran Kunci , klein dan server saling bertukar kunci publik, lalu menggunakan algoritma tertentu untuk menghasilkan session key secara terpisah yang nantinya digunakan untuk enkripsi simetris.
+- Otentikasi kunci SSH: SSH sering menggunakan public/private key untuk autentikasi dari pada password autentikasi, bahkan dilindungi kembali dengan passphrase sebagai keamanan tambahan.
+
+5. Perbedaan utama HTTP dan HTTPS adalah dibagian keamanan, dimana HTTPS lebih secure karena menggunakan enkripsi [SLL/TLS]  untuk melindungi data, sementara HTTP tidak. HTTPS lebih menjamin privasi dan keamanan data antara browser dan server, menggunakan port 443 dan secara SEO google lebih memprioritaskan HTTPS sehingga menjadikannya faktor penting untuk peringkat SEO. Sedangkan HTTP menggunakan port default 80 tidak ada sertifikat keamanan bahkan google sering memberi tanda “Not Secure”. 
+
+6.Docker OCI (Open Container initiative) compliance standard adalah kepatuhan docker terhadap standarisasi untuk container image dan runtime kontainer yang ditetapkan Linux Foundation. Komponen utama standar OCI, yaitu:
+OCI image specification: mendefinisikan format standar image kontainer (manifest, filesystem dan configuration)
+OCI Runtime Specification (runtime): mendefinisikan standar runtime container.
+
+7. Container adalah teknologi virtualisasi yang memungkinkan dijalankan secara terisolasi dari sistem operasi host. Dalam kata lain, container memberikan sistem operasi bagi sebuah aplikasi untuk dapat berkerja secara terisolasi dan terbatas. 
+Virtual machine sebagai penyedia aplikasi secara virtual dengan menggunakan server yang digunakan sepenuhnya untuk penyimpanan. Namun, virtual machine memerlukan ruang yang besar dan kapasitas penuh pada real machine yang dapat digunakan. Perbedaan utama antara container dengan VM terletak pada ukuran container yang lebih ringan, cepat dan efisien dalam sumber daya dibandingkan VM
+
+8. Docker image layer adalah lapisan sistem file read-only yang bertumpuk secara hierarkis, dimana setiap lapisan merepresentasikan perubahan dari instruksi dockerfile. Manfaatnya adalah efisiensi penyimpanan , kecepatan build melalui caching dan distribusi image yang lebih ringan.
+Contoh penggunaan dan pembentukan layer
+FROM ubuntu // memulai lapisan base image
+RUN apt-get update // menambah lapisan baru berisi perubahan update sistem
+COPY . /app //menambah lapisan berisi file aplikasi
+
+
+9. Docker Volume adalah virtual disk container yang digunakan menyimpan data bersifat persistensi agar data tidak hilang saat kontainer dihapus, dihentikan dan diperbarui. Memungkinkan beberapa kontainer berbagi data dan secara performa lebih efisien dan aman dibandingkan bind mounts karna dikelola docker engine dan tersimpan dibagian khusus dalam sistem host
+Contoh
+Menjalankan MySQL dan memastikan data persisten
+Docker volume create mysql_data
+Docker run -d –name mysql-db -v mysql_data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=password mysql:latest
+	
+Docker Network adalah Jaringan virtual yang memungkinkan container berkomunikasi bahkan jika berada pada host berbeda. Memungkinkan kontainer saling mencari dan memanggil berdasarkan nama kontainer tanpa harus mengetahui alamat IP-nya
+
+Jenis Network:
+Bridge: digunakan untuk komunikasi antar kontainer di host yang sama
+Host: kontainer menggunakan jaringan host secara langsung, tanpa isolasi jaringan
+None: kontainer tidak terhubung jaringan manapun
+
+Contoh: menghubungkan kontainer web dengan kontainer database dalam satu jaringan kustom
+
+Docker network create my-app-net
+docker run -d –name db-container – network my-app-net -e MYSQL_DATABASE=wordpress mysql:latest
+
+10. Web server adalah program yang menyediakan akses terhadap resource dengan menggunakan protokol HTTPS &HTTP untuk menampilkan konten website ke pengguna. Contoh apache nginx, litespeed.
+Reverse proxy adalah server perentara yang ditempatkan satu atau lebih web server. Klien tidak berkomunikasi langsung ,melainkan melaui reverse proxy.
+
+Tujuan:
+Load balancing: membagi beban lalu lintas ke beberapa server agar tidak overload
+Keamanan: menyembunyikan IP address dan melindungi dari serangan seperti DDoS
+Caching : menyimpan konten cache dari backend untuk percepat respons pengguna
+Contoh: Nginx , Apache( mod_proxy), HAProxy , traefik dll

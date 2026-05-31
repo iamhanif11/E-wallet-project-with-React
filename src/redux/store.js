@@ -13,6 +13,7 @@ import storage from "redux-persist/es/storage";
 import authReducer from "./slices/authSlice";
 import  env  from "../utils/environment";
 import usersReducer from "./slices/usersSlice"
+import walletReducer from "./slices/walletSlice"
 
 const persistConfig = {
   key: "e-wallet",
@@ -23,6 +24,7 @@ const persistConfig = {
 const persistedReducer = persistCombineReducers(persistConfig, {
   auth: authReducer,
   users: usersReducer,
+  wallet: walletReducer,
   devTools: true,
 });
 

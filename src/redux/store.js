@@ -14,6 +14,7 @@ import authReducer from "./slices/authSlice";
 import  env  from "../utils/environment";
 import usersReducer from "./slices/usersSlice"
 import walletReducer from "./slices/walletSlice"
+import transactionReducer from "./slices/transactionSlice"
 
 const persistConfig = {
   key: "e-wallet",
@@ -25,6 +26,7 @@ const persistedReducer = persistCombineReducers(persistConfig, {
   auth: authReducer,
   users: usersReducer,
   wallet: walletReducer,
+  transaction: transactionReducer,
   devTools: true,
 });
 

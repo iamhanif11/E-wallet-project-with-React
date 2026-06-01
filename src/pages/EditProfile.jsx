@@ -98,6 +98,22 @@ function EditProfile() {
     }
   };
 
+  const getDisplayImage = (imagePath) => {
+    if (!imagePath) return "/User edit.svg";
+
+    if(imagePath.startsWith("blob")) return imagePath
+
+    if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) return imagePath;
+
+    const BACKEND_URL = "http://localhost:8080";
+    const cleanPath = imagePath.startsWith("/") ? imagePath.slice(1) : imagePath
+
+    if (cleanPath.startsWith("img/profile")){
+      return `${BACKEND_URL}/${cleanPath}`
+    } else {
+      return `${BACKEND_URL}/img/profile/${cleanPath}`
+    }
+  };
 
 
   return (
@@ -121,7 +137,7 @@ function EditProfile() {
                   <h3 className="text-gray-700 font-bold">Profile Picture</h3>
                   <div className="flex items-center gap-6">
                     <img
-                      src={previewImage || "/User edit.svg"}
+                      src={getDisplayImage(previewImage)}
                       alt="photo-profile"
                       className="w-24 h-24 bg-gray-50 border border-gray-200 rounded-xl object-cover p-2"
                     />

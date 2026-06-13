@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PaymentMethod from "../components/atoms/PaymentOption";
 import DashboardHeader from "../components/DashboardPage/DashboardHeader";
 import Menu from "../components/DashboardPage/Menu";
@@ -6,18 +6,26 @@ import Menu from "../components/DashboardPage/Menu";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { topUpBalance } from "../redux/slices/transactionSlice";
+import { useNavigate } from "react-router";
+import { fetchUserProfile } from "../redux/slices/usersSlice";
 
 
 function TopUp() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const {topUpStatus} = useSelector((state) => state.transaction)
   const {profileData} = useSelector((state) => state.users)
   // const [previewImage, setPreviewImage] = useState(null)
 
   const [amount, setAmount] = useState("")
-
   const [paymentMethodId, setPaymentMethodId] = useState(1)
+
+  useEffect(() => {
+    if (!profileData) {
+      dispatch(fetchUserProfile())
+    }
+  }, [dispatch, profileData])
 
   const serviceFee = 2500
   const taxRate = 0.11
@@ -35,7 +43,7 @@ function TopUp() {
     try{
      await dispatch(topUpBalance({
       amount: nominalTopUp, 
-      payment_method_id: paymentMethodId
+      payment_method_id: Number(paymentMethodId)
      })).unwrap()
 
       toast.success(
@@ -45,6 +53,10 @@ function TopUp() {
         </div>
       )
       setAmount("")
+
+      setTimeout(() => {
+        navigate("/dashboard")
+      },1500)
     } catch (error) {
       toast.error(error.message || "Terjadi Kesalahan")
     }

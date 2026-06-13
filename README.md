@@ -58,7 +58,7 @@ $ npm run dev
 
 | Version | Description                                                                                                                        |
 | ------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| latest  | Setup Docker multi-stage build, Nginx and setup GitHub Actions for GHCR deployment config by [iamhanif11](https://github.com/iamhani) |
+| 1.0  | Setup Docker multi-stage build, Nginx and setup GitHub Actions for GHCR deployment config by [iamhanif11](https://github.com/iamhani) |
 
 ## How to Contribute
 
@@ -85,4 +85,4 @@ This project is licensed under the MIT License
 
 ## Related Project
 
-[Backend E-Wallet Repository](hhttps://github.com/iamhanif11/koda-b7-ewallet-backend.git)
+[Backend E-Wallet Repository](https://github.com/iamhanif11/koda-b7-ewallet-backend.git)

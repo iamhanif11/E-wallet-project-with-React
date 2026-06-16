@@ -2,98 +2,107 @@ import { useState } from "react";
 // import { set } from "react-hook-form";
 import toast from "react-hot-toast";
 
-
-function DetailTransfer({recipient, onConfirm}) {
-  const [amount, setAmount] = useState("")
-  const [note, setNote] = useState("")
+function DetailTransfer({ recipient, onConfirm }) {
+  const [amount, setAmount] = useState("");
+  const [note, setNote] = useState("");
 
   const handleContinue = () => {
     if (!amount || Number(amount) <= 0) {
-      toast.error("Masukkan nominal transfer terlebih dahulu")
-      return
+      toast.error("Masukkan nominal transfer terlebih dahulu");
+      return;
     }
-    onConfirm(Number(amount), note)
-  }
+    onConfirm(Number(amount), note);
+  };
 
   const getImageUrl = (imagePath) => {
     if (!imagePath) return "/User edit.svg";
-    if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) return imagePath;
-    const BACKEND_URL = "http://localhost:8080"; 
-    const cleanPath = imagePath.startsWith("/") ? imagePath.slice(1) : imagePath;
-    return cleanPath.startsWith("img/profile") 
-      ? `${BACKEND_URL}/${cleanPath}` 
+    if (imagePath.startsWith("http://") || imagePath.startsWith("https://"))
+      return imagePath;
+    const BACKEND_URL = "http://localhost:8080";
+    const cleanPath = imagePath.startsWith("/")
+      ? imagePath.slice(1)
+      : imagePath;
+    return cleanPath.startsWith("img/profile")
+      ? `${BACKEND_URL}/${cleanPath}`
       : `${BACKEND_URL}/img/profile/${cleanPath}`;
   };
   return (
-    <section className="bg-white rounded-xs p-6  border border-gray-100 ">
-      
-    
+    <section className="rounded-xs border border-gray-100 bg-white p-6">
       <div className="mb-8">
-        <h3 className="text-lg font-bold mb-4">People Information</h3>
+        <h3 className="mb-4 text-lg font-bold">People Information</h3>
 
-        <div className="flex items-center gap-4 bg-[#E8E8E84D] p-4  border border-gray-100">
-          <img 
-            src={getImageUrl(recipient.picture || recipient?.img)} 
-            alt="photo-profile" 
-            className="w-16 h-16 rounded-md object-cover" 
+        <div className="flex items-center gap-4 border border-gray-100 bg-[#E8E8E84D] p-4">
+          <img
+            src={getImageUrl(recipient.picture || recipient?.img)}
+            alt="photo-profile"
+            className="h-16 w-16 rounded-md object-cover"
           />
           <div className="flex-1">
-            <p className="font-bold text-md">{recipient?.receiver||recipient?.name}</p>
-            <p className="text-sm text-gray-500 mb-1">{recipient?.phone}</p>
-            <div className="flex items-center gap-2 bg-primary text-white text-xs px-3 py-1 rounded-lg w-fit">
-              <img src="/badge.svg" alt="verified" className="w-3 h-3" />
+            <p className="text-md font-bold">
+              {recipient?.receiver || recipient?.name}
+            </p>
+            <p className="mb-1 text-sm text-gray-500">{recipient?.phone}</p>
+            <div className="bg-primary flex w-fit items-center gap-2 rounded-lg px-3 py-1 text-xs text-white">
+              <img src="/badge.svg" alt="verified" className="h-3 w-3" />
               <span>Verified</span>
             </div>
           </div>
-          <button className="p-2 hover:bg-gray-200 rounded-full transition-colors">
-            <img src="/Star.svg" alt="favorite" className="w-6 h-6 opacity-40" />
+          <button className="rounded-full p-2 transition-colors hover:bg-gray-200">
+            <img
+              src="/Star.svg"
+              alt="favorite"
+              className="h-6 w-6 opacity-40"
+            />
           </button>
         </div>
       </div>
 
-
       <div className="mb-8">
         <h3 className="text-md font-bold">Amount</h3>
-        <p className="text-sm text-gray-500 mb-4">
-          Type the amount you want to transfer and then press continue to the next steps.
+        <p className="mb-4 text-sm text-gray-500">
+          Type the amount you want to transfer and then press continue to the
+          next steps.
         </p>
-        <div className="relative group">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2">
-            <img src="/money.png" alt="icon-money" className="w-8 h-8 opacity-50" />
+        <div className="group relative">
+          <div className="absolute top-1/2 left-4 -translate-y-1/2">
+            <img
+              src="/money.png"
+              alt="icon-money"
+              className="h-8 w-8 opacity-50"
+            />
           </div>
-          <input 
-            type="number" 
+          <input
+            type="number"
             value={amount}
-            onChange={(e) => setAmount (e.target.value)}
-            placeholder="Enter Nominal Transfer" 
-            className="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-md text-sm focus:outline-none  placeholder:text-gray-400"
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="Enter Nominal Transfer"
+            className="w-full rounded-md border border-gray-200 bg-white py-4 pr-4 pl-12 text-sm placeholder:text-gray-400 focus:outline-none"
           />
         </div>
       </div>
 
-    
       <div className="mb-10">
         <h3 className="text-md font-bold">Notes</h3>
-        <p className="text-sm text-gray-500 mb-4">
-          You can add some notes for this transfer such as payment coffee or something
+        <p className="mb-4 text-sm text-gray-500">
+          You can add some notes for this transfer such as payment coffee or
+          something
         </p>
-        <textarea 
+        <textarea
           value={note}
           onChange={(e) => setNote(e.target.value)}
           maxLength={255}
           placeholder="Enter Some Notes"
-          className="w-full p-4 bg-white border border-gray-200 rounded-md text-sm focus:outline-none resize-none placeholder:text-gray-400"
+          className="w-full resize-none rounded-md border border-gray-200 bg-white p-4 text-sm placeholder:text-gray-400 focus:outline-none"
         ></textarea>
       </div>
 
-
-      <button 
-      type="button"
-      onClick={handleContinue}
-      className="w-full bg-primary hover:bg-blue-700 text-white  py-4 rounded-md">
+      <button
+        type="button"
+        onClick={handleContinue}
+        className="bg-primary w-full rounded-md py-4 text-white hover:bg-blue-700"
+      >
         Submit & Transfer
       </button>
-      
     </section>
   );
 }

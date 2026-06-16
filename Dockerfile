@@ -7,8 +7,8 @@ COPY package.json package-lock.json ./
 # ARG VITE_ENV=production
 # ENV VITE_ENVIRONMENT=VITE_ENV
 
-# ARG BASE_URL=http://localhost:8080
-# ENV VITE_API_BASE_URL=${BASE_URL}
+ARG BASE_URL=/api
+ENV VITE_API_BASE_URL=${BASE_URL}
 
 RUN npm ci
 

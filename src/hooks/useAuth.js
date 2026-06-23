@@ -6,7 +6,7 @@ export const useAuth = () => {
     const dispatch = useDispatch();
 
     const { isLoggedIn, currentUser, status, hasPin } = useSelector((state) => state.auth)
-    console.log("data:", currentUser)
+    // console.log("data:", currentUser)
     const isLoading = status === 'loading';
 
     const handleRegister = async(email, password) => {

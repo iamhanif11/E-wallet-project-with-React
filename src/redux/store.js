@@ -19,7 +19,7 @@ import transactionReducer from "./slices/transactionSlice"
 const persistConfig = {
   key: "e-wallet",
   storage,
-  whitelist: ["auth","users"],
+  whitelist: ["auth"],
 };
 
 const persistedReducer = persistCombineReducers(persistConfig, {

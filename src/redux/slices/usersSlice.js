@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../services/api";
+import { logoutUser } from "./authSlice";
 
 export const fetchUserProfile = createAsyncThunk(
     "users/fetchProfile",
@@ -109,6 +110,13 @@ const usersSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+
+        .addCase(logoutUser.fulfilled, (state) => {
+            state.profileData = null;
+            state.status = "none";
+            state.updateStatus = "none";
+            state.error = null;
+        })
 
         .addCase(fetchUserProfile.pending, (state) => {
             state.status = "loading"
